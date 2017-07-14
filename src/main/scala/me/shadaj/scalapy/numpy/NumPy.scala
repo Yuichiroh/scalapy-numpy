@@ -1,7 +1,6 @@
 package me.shadaj.scalapy.numpy
 
 import jep.Jep
-
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.{ObjectFascade, ObjectReader, ObjectWriter}
 
@@ -21,6 +20,8 @@ class NumPy(o: py.Object)(implicit jep: Jep) extends ObjectFascade(o) {
   def random: NumPyRandom = dynamic.random.as[NumPyRandom]
 
   def float32: NumPyType = dynamic.float32.as[NumPyType]
+
+  def zeros(size:Int): NDArray[Float] = dynamic.zeroz(size).as[NDArray[Float]]
 
   def clip[T](value: NDArray[T], low: NDArray[T], high: NDArray[T])(implicit writer: ObjectWriter[T], reader: ObjectReader[T]): NDArray[T] = {
     dynamic.clip(value, low, high).as[NDArray[T]]

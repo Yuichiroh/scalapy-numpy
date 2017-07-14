@@ -1,11 +1,12 @@
 package me.shadaj.scalapy.numpy
 
 import jep.Jep
-
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.{ObjectReader, ObjectWriter}
 
 class NDArray[T](orig: py.Ref)(implicit reader: ObjectReader[T], jep: Jep) extends py.NativeSeq[T](orig) {
+//  override def toSeq = origDynamic.as[scala.collection.immutable.Seq[T]]
+
   def unary_-(): NDArray[T] = (-origDynamic).as[NDArray[T]]
 
   def +(o: T)(implicit writer: ObjectWriter[T]): NDArray[T] = (origDynamic + o).as[NDArray[T]]
